@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  database: startup_movies
+  host: localhost
+  username: postgres
+  password:
+  encoding: utf8
