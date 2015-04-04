@@ -1,0 +1,5 @@
+require 'sinatra/activerecord'
+require 'sinatra/activerecord/rake'
+
+ActiveRecord::Base.configurations = YAML.load_file('./config/database.yaml')
+ActiveRecord::Base.establish_connection(:development)
