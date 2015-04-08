@@ -15,6 +15,7 @@ require 'will_paginate/active_record'
 
 require './common-helper.rb'
 require './lib-scrape.rb'
+require './lib-youtube.rb'
 require './controllers'
 require './models'
 
