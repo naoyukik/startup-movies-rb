@@ -10,5 +10,5 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 max_line_length = 80
 
-[*.{rb,ru,js}]
+[*.{rb,ru,js,erb}]
 indent_size = 2
