@@ -12,6 +12,8 @@ require 'active_record'
 require 'pg'
 require 'will_paginate'
 require 'will_paginate/active_record'
+require 'json'
+require 'date'
 
 require './common-helper.rb'
 require './lib-scrape.rb'
