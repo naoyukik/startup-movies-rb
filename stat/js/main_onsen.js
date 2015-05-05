@@ -14,13 +14,13 @@ module.controller('AppController', ['$scope', '$http', '$q', '$sce', function($s
         // console.log('siteData => '+siteData);
         console.log("Created item #" + index);
         itemScope.item = {
-          name: '要素 No.' + (index + 1)
+          name: 'blank'
         };
         var siteData = this.getSiteData((index+1), itemScope);
       }
     },
     calculateItemHeight : function(index) {
-      return 380;
+      return 320;
     },
     countItems: function() {
       return lazyMaxItemCount;
