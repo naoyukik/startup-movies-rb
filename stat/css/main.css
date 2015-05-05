@@ -1,0 +1,7 @@
+.youtube iframe {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100% !important;
+  max-height: 315px;
+}
