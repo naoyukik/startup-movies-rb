@@ -12,10 +12,11 @@ end
 #
 # [API]URL登録
 #
-get '/api/create' do
+post '/api/create', provides: :json do
   create_result = []
   movie_data = nil
-  url_str = params[:url]
+  params = JSON.parse request.body.read
+  url_str = params['params']['url']
   movie_data = LibScrape.scraping_site_data(url_str)
   movie_data.each do |movie_datum|
     begin
