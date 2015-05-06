@@ -43,7 +43,7 @@ get '/api/site' do
   if defined?(params[:page]) && params[:page].to_i > 0
     page_num = params[:page].to_i
   end
-  SiteData.paginate(:page => page_num, :per_page => 1).each do |site_data|
+  SiteData.paginate(:page => page_num, :per_page => 1).order('id DESC').each do |site_data|
     object = load_provider(site_data['provider'])
     tag_result << object.create_embed_data(site_data)
   end
