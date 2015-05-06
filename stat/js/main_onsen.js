@@ -1,10 +1,4 @@
 var module = ons.bootstrap('my-app', ['onsen']);
-// module.controller('AppController', function($scope) { });
-module.controller('PageController', function($scope) {
-  ons.ready(function() {
-    // Init code here
-  });
-});
 module.controller('AppController', ['$scope', '$http', '$q', '$sce', function($scope, $http, $q, $sce) {
   $scope.MyDelegate = {
     configureItemScope : function(index, itemScope) {
@@ -12,11 +6,11 @@ module.controller('AppController', ['$scope', '$http', '$q', '$sce', function($s
         itemScope.canceler = $q.defer();
         // var siteData = this.getSiteData(index+1, itemScope);
         // console.log('siteData => '+siteData);
-        console.log("Created item #" + index);
+        console.log('Created item #' + index);
         itemScope.item = {
           name: 'blank'
         };
-        var siteData = this.getSiteData((index+1), itemScope);
+        var siteData = this.getSiteData((index + 1), itemScope);
       }
     },
     calculateItemHeight : function(index) {
@@ -27,26 +21,47 @@ module.controller('AppController', ['$scope', '$http', '$q', '$sce', function($s
     },
     destroyItemScope: function(index, itemScope) {
       itemScope.canceler.resolve();
-      console.log("Destroyed item #" + index);
+      console.log('Destroyed item #' + index);
     },
     // サイトデータの取得
-    getSiteData : function(index, itemScope) {
-        var config = {
-          params: {page: index},
-          timeout: itemScope.canceler.promise
+    getSiteData : function(index, itemScope, errorCount) {
+      var errorCount = (errorCount === undefined) ? 0 : errorCount;
+      var config = {
+        params: {page: index},
+        timeout: itemScope.canceler.promise
+      };
+      console.log('config => ' + config['params']['page']);
+      $http.get('/api/site', config)
+      .success(function(data) {
+        console.log(angular.fromJson(data)[0]);
+        itemScope.item = {
+          name: $sce.trustAsHtml(angular.fromJson(data)[0])
         };
-        console.log('config => '+config['params']['page']);
-        $http.get('/api/site', config)
-        .success(function(data) {
-          itemScope.item = {
-            name: $sce.trustAsHtml(angular.fromJson(data)[0])
-          };
-        })
-        .error(function() {
-          console.log('error!!');
-          // itemScope.item.name = 'No bacon';
-        });
+      })
+      .error(function() {
+        console.log('error!! => ' + index);
+        console.log(errorCount);
+        if (errorCount < 1) {
+          console.log('error loop');
+          errorCount = 1;
+          arguments.callee(index, itemScope, errorCount)
+        }
+        // itemScope.item.name = 'No bacon';
+      });
     },
   };
-
+  $scope.createSiteData = function() {
+    console.log(this.query);
+    var config = {
+      params: {url: this.query}
+    };
+    console.log('config => ' + config['params']['url']);
+    $http.post('/api/create', config)
+    .success(function(data) {
+      console.log('success');
+      // itemScope.item = {
+      //   name: $sce.trustAsHtml(angular.fromJson(data)[0])
+      // };
+    })
+  };
 }]);
