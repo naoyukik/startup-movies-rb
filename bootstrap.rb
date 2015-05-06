@@ -21,6 +21,8 @@ require './lib-youtube.rb'
 require './controllers'
 require './models'
 
+use ActiveRecord::ConnectionAdapters::ConnectionManagement
+
 set :public_folder, File.dirname(__FILE__) + '/stat'
 
 # TODO: Check Currnet User Connected host address.
