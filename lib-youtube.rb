@@ -40,8 +40,8 @@ class LibYoutube
     #
     def scraping_url(attribute, url)
       result = {}
-      provider_url = 'http://www.youtube.com'
-      re = /^http:\/\/www.youtube.com\/embed\/(.*?)$/
+      provider_url = '//www.youtube.com'
+      re = /^http.?:\/\/www.youtube.com\/embed\/(.*?)$/
       if attribute == 'src' && url.index(provider_url) >= 0
         result[:url] = url.strip.gsub(re, '\1')
         result[:provider] = Models::PROVIDER_YOUTUBE
