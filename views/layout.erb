@@ -6,9 +6,17 @@
     <title>Startup Movies</title>
     <link rel="stylesheet" href="/css/onsenui.css">
     <link rel="stylesheet" href="/css/onsen-css-components.css">
+    <link rel="stylesheet" href="/css/main.css">
     <script type="text/javascript">
       // レイジーリピートで使用するアイテム数
       var lazyMaxItemCount = <%= @max_item_count %>;
+    </script>
+    <script>
+      var options = {
+        animation: 'slide', // アニメーションの種類
+        onTransitionEnd: function() {} // アニメーションが完了した際によばれるコールバック
+      };
+      // myNavigator.pushPage("page2.html", options);
     </script>
     <script type='application/javascript' src="/js/angular/angular.js" charset="utf-8"></script>
     <script type='application/javascript' src="/js/angular-sanitize/angular-sanitize.js" charset="utf-8"></script>
@@ -20,14 +28,37 @@
       <ons-page>
         <ons-toolbar>
           <div class="center">startup movies</div>
+          <div class="right">
+            <ons-toolbar-button onclick="myNavigator.pushPage('create_form', { animation : 'slide' } )">
+              <ons-icon icon="fa-plus-square-o" style="font-size: 32px; width: 1em">
+            </ons-toolbar-button>
+          </div>
         </ons-toolbar>
         <div style="text-align: center">
           <ons-list>
-            <ons-list-item ons-lazy-repeat="MyDelegate" ng-bind-html="item.name">
+            <ons-list-item ons-lazy-repeat="MyDelegate" ng-bind-html="item.name" class="youtube">
             </ons-list-item>
           </ons-list>
         </div>
       </ons-page>
     </ons-navigator>
+    <ons-template id="create_form">
+      <ons-page>
+        <ons-toolbar>
+          <div class="left"><ons-back-button>Back</ons-back-button></div>
+          <div class="center">Add Movie</div>
+        </ons-toolbar>
+        <div style="text-align: center">
+          <br />
+            <form>
+              <input class="text-input" id="my-input" style="width:80%" placeholder="Add site URL" ng-model="query">
+              <ons-button ng-click="createSiteData()">Submit</ons-button>
+            </form>
+          <ons-button modifier="light" onclick="myNavigator.popPage()">
+            PopPage
+          </ons-button>
+        </div>
+      </ons-page>
+    </ons-template>
   </body>
 </html>
