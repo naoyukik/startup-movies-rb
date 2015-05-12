@@ -18,6 +18,7 @@ require 'date'
 require './common-helper.rb'
 require './lib-scrape.rb'
 require './lib-youtube.rb'
+require './lib-vimeo.rb'
 require './controllers'
 require './models'
 
