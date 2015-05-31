@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/onsenui.css">
     <link rel="stylesheet" href="/css/onsen-css-components.css">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/js/node_modules/angularjs-toaster/toaster.min.css">
     <script type="text/javascript">
       // レイジーリピートで使用するアイテム数
       var lazyMaxItemCount = <%= @max_item_count %>;
@@ -19,6 +20,8 @@
     </script>
     <script type='application/javascript' src="/js/angular/angular.js" charset="utf-8"></script>
     <script type='application/javascript' src="/js/angular-sanitize/angular-sanitize.js" charset="utf-8"></script>
+    <script type='application/javascript' src="/js/node_modules/angularjs-toaster/toaster.min.js" charset="utf-8"></script>
+    <script type='application/javascript' src="/js/node_modules/angular-animate/angular-animate.min.js" charset="utf-8"></script>
     <script type='application/javascript' src='/js/onsenui.js' charset="utf-8"></script>
     <script type='application/javascript' src='/js/main_onsen.js?vr=5' charset="utf-8"></script>
   </head>
@@ -47,17 +50,14 @@
           <div class="left"><ons-back-button>Back</ons-back-button></div>
           <div class="center">Add Movie</div>
         </ons-toolbar>
-        <div style="text-align: center">
-          <br />
+        <div style="text-align: center; padding-top:0.5em;">
             <form>
               <input class="text-input" id="my-input" style="width:80%" placeholder="Add site URL" ng-model="query">
               <ons-button ng-click="createSiteData()">Submit</ons-button>
             </form>
-          <ons-button modifier="light" onclick="myNavigator.popPage()">
-            PopPage
-          </ons-button>
         </div>
       </ons-page>
     </ons-template>
+    <toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
   </body>
 </html>
