@@ -1,0 +1,7 @@
+--verbose
+--langmap=ruby:.rb.ru
+--ruby-kinds=cf
+--exclude=js
+--exclude=vendor
+--exclude=.bundle
+--exclude=doc
