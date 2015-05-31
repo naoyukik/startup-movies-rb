@@ -15,12 +15,12 @@ require 'will_paginate/active_record'
 require 'json'
 require 'date'
 
+require './models'
 require './common-helper.rb'
 require './lib-scrape.rb'
 require './lib-youtube.rb'
 require './lib-vimeo.rb'
 require './controllers'
-require './models'
 
 use ActiveRecord::ConnectionAdapters::ConnectionManagement
 
