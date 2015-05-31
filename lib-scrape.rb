@@ -5,12 +5,7 @@ require 'nokogiri'
 require 'sinatra/base'
 require 'sinatra/reloader'
 
-class LibScrape < Sinatra::Base
-  configure :development do
-    register Sinatra::Reloader
-  end
-
-  class << self
+class LibScrape
 
     #
     # スクレイピングを行う
@@ -30,33 +25,20 @@ class LibScrape < Sinatra::Base
     # iframeをscraping
     #
     def scraping_iframe(doc)
-      lib_youtube = LibYoutube.new
+      lib_platform = [LibYoutube.new, LibVimeo.new]
       movies = []
-      doc.search("iframe").each do |iframe_value|
-        iframe_value.attributes.each do |attr_key, attr_value|
-          scraping_list = lib_youtube.scraping_url(attr_key, attr_value.value)
-          if scraping_list.length > 0
-            movies << scraping_list
+      for lp in lib_platform do
+        doc.search("iframe").each do |iframe_value|
+          iframe_value.attributes.each do |attr_key, attr_value|
+            scraping_list = lp.scraping_url(attr_key, attr_value.value)
+            if scraping_list.length > 0
+              movies << scraping_list
+            end
           end
         end
       end
       return movies
     end
-
-
-    # #
-    # # 呼び出し用動画URLの生成
-    # #
-    # def create_embed_url(movie_url)
-    #   movie_url = 'xohXWgCpsD0s'
-    #   prefix = 'http://www.youtube.com/embed/'
-    #   suffix = ''
-    #   youtube_movie_url_format = "%s%s"
-    #   result = youtube_movie_url_format % ([prefix, movie_url])
-    #   return result
-    # end
-
-  end
 
 end
 

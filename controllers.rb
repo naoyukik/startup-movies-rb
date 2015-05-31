@@ -17,7 +17,8 @@ post '/api/create', provides: :json do
   movie_data = nil
   params = JSON.parse request.body.read
   url_str = params['params']['url']
-  movie_data = LibScrape.scraping_site_data(url_str)
+  lib_scrape = LibScrape.new
+  movie_data = lib_scrape.scraping_site_data(url_str)
   movie_data.each do |movie_datum|
     begin
       obj = SiteData.create(
