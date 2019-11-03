@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Startup Movies</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/magnific-popup.css">
+    <script type='application/javascript' src='../stat/js/jquery-2.1.3.min.js' charset="utf-8"></script>
+    <script type='application/javascript' src='../stat/js/knockout-3.3.0.js' charset="utf-8"></script>
+    <script type='application/javascript' src='../stat/js/main.js?vr=5' charset="utf-8"></script>
+</head>
+<body>
+<div class="header">
+</div>
+    <div>
+        登録 <form action="/api/create"><input type="text"></form>
+        <button>送信</button>
+    </div>
+    サイトリスト
+    <div data-bind="foreach: siteData">
+        <div data-bind="text: id"></div>
+        <div data-bind="text: site_name"></div>
+        <div data-bind="text: provider"></div>
+        <div data-bind="text: movie_url"></div>
+        <div data-bind="text: created_at"></div>
+        <div data-bind="text: update_at"></div>
+    </div>
+</body>
+</html>
