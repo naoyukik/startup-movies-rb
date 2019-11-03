@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Startup Movies</title>
+    <title>Service Trailer</title>
     <link rel="stylesheet" href="/css/onsenui.css">
     <link rel="stylesheet" href="/css/onsen-css-components.css">
     <link rel="stylesheet" href="/css/main.css">
@@ -11,8 +11,6 @@
     <script type="text/javascript">
       // レイジーリピートで使用するアイテム数
       var lazyMaxItemCount = <%= @max_item_count %>;
-    </script>
-    <script>
       var options = {
         animation: 'slide', // アニメーションの種類
         onTransitionEnd: function() {} // アニメーションが完了した際によばれるコールバック
@@ -29,7 +27,7 @@
     <ons-navigator title="Navigator" var="myNavigator">
       <ons-page>
         <ons-toolbar>
-          <div class="center">startup movies</div>
+          <div class="center">Service Trailer</div>
           <div class="right">
             <ons-toolbar-button onclick="myNavigator.pushPage('create_form', { animation : 'slide' } )">
               <ons-icon icon="fa-plus-square-o" style="font-size: 32px; width: 1em">

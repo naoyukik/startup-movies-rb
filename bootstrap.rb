@@ -9,7 +9,7 @@ configure :development do |config|
   config.also_reload "./*.rb"
 end
 require 'active_record'
-require 'pg'
+require 'mysql2'
 require 'will_paginate'
 require 'will_paginate/active_record'
 require 'json'
@@ -40,5 +40,5 @@ before do
 end
 
 after do
-
+  ActiveRecord::Base.connection.close
 end

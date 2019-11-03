@@ -19,12 +19,13 @@ post '/api/create', provides: :json do
   url_str = params['params']['url']
   lib_scrape = LibScrape.new
   movie_data = lib_scrape.scraping_site_data(url_str)
-  movie_data.each do |movie_datum|
+  movie_data.each do |movie_datas|
     begin
       obj = SiteData.create(
         :site_name => 'title',
-        :provider => movie_datum[:provider],
-        :movie_url => movie_datum[:url]
+        :provider => movie_datas[:provider],
+        :movie_url => movie_datas[:url],
+        :site_url => url_str
       )
       create_result << obj
       rescue ActiveRecord::RecordNotUnique => e
@@ -47,6 +48,7 @@ get '/api/site' do
   SiteData.paginate(:page => page_num, :per_page => 1).order('id DESC').each do |site_data|
     object = load_provider(site_data['provider'])
     tag_result << object.create_embed_data(site_data)
+    tag_result << site_data['site_url']
   end
   tag_result.to_json
 
