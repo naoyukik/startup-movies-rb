@@ -1,0 +1,14 @@
+# pid: /var/run/thin/thin.pid
+pid: ./thin.pid
+# timeout: 30
+# log: log/thin.log
+# max_conns: 1024
+# require: []
+# max_persistent_conns: 512
+# environment: production
+servers: 1
+# daemonize: true
+# chdir: /var/www/startup-movies
+# rackup: /var/www/startup-movies/config.ru
+# port: 9292
+# address: 127.0.0.1

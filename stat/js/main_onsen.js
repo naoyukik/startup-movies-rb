@@ -14,7 +14,7 @@ module.controller('AppController', ['$scope', '$http', '$q', '$sce', 'toaster', 
       }
     },
     calculateItemHeight : function(index) {
-      return 320;
+      return 350;
     },
     countItems: function() {
       return lazyMaxItemCount;
@@ -33,9 +33,9 @@ module.controller('AppController', ['$scope', '$http', '$q', '$sce', 'toaster', 
       // console.log('config => ' + config['params']['page']);
       $http.get('/api/site', config)
       .success(function(data) {
-        // console.log(angular.fromJson(data)[0]);
+        // console.log(angular.fromJson(data)[1]);
         itemScope.item = {
-          name: $sce.trustAsHtml(angular.fromJson(data)[0])
+          name: $sce.trustAsHtml(angular.fromJson(data)[0]+'<a style="position: absolute; top: 305px;" href="'+angular.fromJson(data)[1]+'">'+angular.fromJson(data)[1]+'</a>')
         };
       })
       .error(function() {
